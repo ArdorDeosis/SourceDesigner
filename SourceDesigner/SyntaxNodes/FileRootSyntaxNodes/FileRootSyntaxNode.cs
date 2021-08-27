@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class NamespaceSyntaxNode
+    // TODO
+    public class FileRootSyntaxNode
     {
-        public string Name { get; init; }
-
         public UsingDirectiveSyntaxNode[] UsingDirectives { get; init; } = Array.Empty<UsingDirectiveSyntaxNode>();
         public NamespaceSyntaxNode[] Namespaces { get; init; } = Array.Empty<NamespaceSyntaxNode>();
         public ClassSyntaxNode[] Classes { get; init; } = Array.Empty<ClassSyntaxNode>();

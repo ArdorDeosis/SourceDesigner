@@ -8,14 +8,14 @@ namespace TestApplication
     {
         private static void Main()
         {
-            var @class = new ClassSyntaxNode
+            var file = new ClassSyntaxNode
             {
                 AccessModifier = AccessModifier.Public,
                 Modifiers = ClassModifier.Static | ClassModifier.Partial,
                 Name = "EnumExtensions",
-                Methods = new MethodSyntaxNode[]
+                Methods = new[]
                 {
-                    new ExpressionBodiedMethodSyntaxNode
+                    new MethodSyntaxNode
                     {
                         Name = "MyMethod",
                         ReturnType = "string",
@@ -30,21 +30,24 @@ namespace TestApplication
                                 Modifier = MethodParameterModifier.This
                             }
                         },
-                        Expression = new SwitchExpressionSyntaxNode
+                        Body = new ExpressionBodySyntaxNode
                         {
-                            DefaultValue = new RawExpressionSyntaxNode("throw new Exception()"),
-                            Value = "value",
-                            ValueExpressionPairs = new Dictionary<string, ExpressionSyntaxNode>
+                            Expression = new SwitchExpressionSyntaxNode
                             {
-                                { "1", "one" },
-                                { "2", "two" },
-                                { "3", "three" },
+                                DefaultValue = ExpressionSyntaxNode.FromString("throw new Exception()"),
+                                SwitchValueName = "value",
+                                ValueExpressionPairs = new Dictionary<string, ExpressionSyntaxNode>
+                                {
+                                    { "1", "one" },
+                                    { "2", "two" },
+                                    { "3", "three" },
+                                }
                             }
                         }
                     }
                 }
             };
-            Console.WriteLine(@class.ToCode());
+            Console.WriteLine(file.ToCode());
         }
     }
 }

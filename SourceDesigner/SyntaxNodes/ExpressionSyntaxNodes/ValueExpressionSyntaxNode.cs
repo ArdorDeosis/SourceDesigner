@@ -7,6 +7,6 @@
             Value = value;
         }
 
-        protected T Value { get; }
+        public T Value { get; }
     }
 }

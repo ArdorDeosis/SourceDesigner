@@ -7,5 +7,7 @@
         public static implicit operator ExpressionSyntaxNode(int value) => new IntExpressionSyntaxNode(value);
         
         public static implicit operator ExpressionSyntaxNode(double value) => new DoubleExpressionSyntaxNode(value);
+
+        public static ExpressionSyntaxNode FromString(string expression) => new RawExpressionSyntaxNode(expression);
     }
 }

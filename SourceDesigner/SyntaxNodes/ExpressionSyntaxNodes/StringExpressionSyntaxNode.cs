@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SourceDesigner.SyntaxNodes
+﻿namespace SourceDesigner.SyntaxNodes
 {
     public class StringExpressionSyntaxNode : ValueExpressionSyntaxNode<string>
     {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using SourceDesigner.SyntaxNodes;
 
 namespace SourceDesigner.Utilities
 {

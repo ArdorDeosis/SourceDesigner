@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SourceDesigner
+﻿namespace SourceDesigner
 {
     public record CodeStyle
     {

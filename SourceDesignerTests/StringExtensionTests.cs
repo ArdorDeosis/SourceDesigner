@@ -38,55 +38,5 @@ namespace SourceDesignerTests
         {
             Assert.That(() => "".Indent(null), Throws.ArgumentNullException);
         }
-
-        [TestCase("type")]
-        [TestCase("Type")]
-        [TestCase("_type")]
-        [TestCase("_type1337")]
-        [TestCase("_1337")]
-        [TestCase("NameSpace.Type")]
-        [TestCase("namespace.type")]
-        [TestCase("_.type")]
-        public void IsValidTypeName_SeveralValidValues_true(string value)
-        {
-            Assert.That(value.IsValidTypeName());
-        }
-
-        [TestCase("-type")]
-        [TestCase("#type")]
-        [TestCase("1337")]
-        [TestCase("NameSpace.1337")]
-        [TestCase("namespace..type")]
-        [TestCase(".type")]
-        [TestCase("namespace.")]
-        public void IsValidTypeName_SeveralValidValues_false(string value)
-        {
-            Assert.That(value.IsValidTypeName(), Is.False);
-        }
-
-        [TestCase("type")]
-        [TestCase("Type")]
-        [TestCase("_type")]
-        [TestCase("_type1337")]
-        [TestCase("_1337")]
-        public void IsValidIdentifier_SeveralValidValues_true(string value)
-        {
-            Assert.That(value.IsValidIdentifier());
-        }
-
-        [TestCase("-type")]
-        [TestCase("#type")]
-        [TestCase(".type")]
-        [TestCase("_.type")]
-        [TestCase("1337")]
-        [TestCase("NameSpace.1337")]
-        [TestCase("namespace.type")]
-        [TestCase("namespace.")]
-        [TestCase("NameSpace.Type")]
-        [TestCase("namespace.type")]
-        public void IsValidIdentifier_SeveralValidValues_false(string value)
-        {
-            Assert.That(value.IsValidIdentifier(), Is.False);
-        }
     }
 }

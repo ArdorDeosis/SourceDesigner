@@ -12,6 +12,6 @@ namespace SourceDesigner.SyntaxNodes
         private string DefaultValueString => DefaultValue != null ? $" = {DefaultValue}" : "";
 
         public override string ToCode(CodeStyle style) => 
-            $"{Modifier.FlagEnumToCode().AddTrailingSpace()}{Type} {Name}{DefaultValueString}";
+            $"{Modifier.FlagEnumToCode().WithTrailingSpace()}{Type} {Name}{DefaultValueString}";
     }
 }
