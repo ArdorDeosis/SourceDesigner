@@ -1,33 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
-using SourceDesigner;
+using SourceDesigner.SyntaxNodes;
 
 namespace TestApplication
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            var method = new MethodNode("MyMethod", "string")
+            var @class = new ClassSyntaxNode
             {
                 AccessModifier = AccessModifier.Public,
-                Modifiers = MethodModifier.Static,
-                Parameters = new List<ParameterNode>
+                Modifiers = ClassModifier.Static | ClassModifier.Partial,
+                Name = "EnumExtensions",
+                Methods = new MethodSyntaxNode[]
                 {
-                    new()
+                    new ExpressionBodiedMethodSyntaxNode
                     {
-                        Type = "SomeType",
-                        Name = "value",
-                        Modifier = ParameterModifier.This
-                    },
-                    new()
-                    {
-                        Type = "string",
-                        Name = "someParameter"
+                        Name = "MyMethod",
+                        ReturnType = "string",
+                        AccessModifier = AccessModifier.Public,
+                        Modifiers = MethodModifier.Static,
+                        Parameters = new MethodParameterSyntaxNode[]
+                        {
+                            new()
+                            {
+                                Type = "int",
+                                Name = "value",
+                                Modifier = MethodParameterModifier.This
+                            }
+                        },
+                        Expression = new SwitchExpressionSyntaxNode
+                        {
+                            DefaultValue = new RawExpressionSyntaxNode("throw new Exception()"),
+                            Value = "value",
+                            ValueExpressionPairs = new Dictionary<string, ExpressionSyntaxNode>
+                            {
+                                { "1", "one" },
+                                { "2", "two" },
+                                { "3", "three" },
+                            }
+                        }
                     }
                 }
             };
-            Console.WriteLine(method.ToCode());
+            Console.WriteLine(@class.ToCode());
         }
     }
 }

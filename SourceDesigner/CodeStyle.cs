@@ -4,20 +4,11 @@ namespace SourceDesigner
 {
     public record CodeStyle
     {
-        private int spacesPerIndentation = 4;
+        public int SpacesPerIndentation { get; init; } = 4;
+        public bool NewLineBeforeExpressionBody { get; init; } = false;
 
-        public int SpacesPerIndentation
-        {
-            get => spacesPerIndentation;
-            set
-            {
-                // TODO: custom exception; also: is validating in the setter good practice?
-                if (value < 0)
-                    throw new Exception("negative indentation is a bad idea");
-                spacesPerIndentation = value;
-            }
-        }
-
+        public static CodeStyle Default => new();
+        
         public string Indentation => new(' ', SpacesPerIndentation);
     }
 }
