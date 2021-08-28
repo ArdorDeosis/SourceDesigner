@@ -14,6 +14,17 @@ namespace SourceDesigner.Utilities
             return Regex.Replace(input, "^", style.Indentation, RegexOptions.Multiline);
         }
 
+        public static string WrapInBracesAndIndent(this string input, CodeStyle style)
+        {
+            if (input == null)
+                throw new ArgumentNullException(nameof(input));
+            if (style == null)
+                throw new ArgumentNullException(nameof(style));
+            return string.IsNullOrEmpty(input)
+                ? $"{{{Environment.NewLine}}}"
+                : $"{{{Environment.NewLine}{input.Indent(style)}{Environment.NewLine}}}";
+        }
+
         public static string WithTrailingSpace(this string input) => input switch
         {
             "" => "",

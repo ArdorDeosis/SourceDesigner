@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
@@ -17,9 +18,16 @@ namespace SourceDesigner.SyntaxNodes
         public PropertySetAccessorSyntaxNode? Setter { get; init; }
 
         public override string ToCode(CodeStyle style) =>
-            $"{GetPropertyHeader()}{Environment.NewLine}{{{Environment.NewLine}" +
-            (Getter != null ? $"{Getter.ToCode(style).Indent(style)}{Environment.NewLine}" : "") +
-            (Setter != null ? $"{Setter.ToCode(style).Indent(style)}{Environment.NewLine}" : "") +
-            (assignment != null ? $"}} {assignment.ToCode(style)};" : "}");
+            $"{GetPropertyHeader()}{Environment.NewLine}{GetAccessorsCodeBlock(style).WrapInBracesAndIndent(style)}";
+
+        private string GetAccessorsCodeBlock(CodeStyle style)
+        {
+            List<string> accessorBodies = new();
+            if (Getter != null)
+                accessorBodies.Add(Getter.ToCode(style));
+            if(Setter != null)
+                accessorBodies.Add(Setter.ToCode(style));
+            return string.Join(Environment.NewLine, accessorBodies);
+        }
     }
 }

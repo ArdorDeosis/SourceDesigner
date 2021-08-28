@@ -17,23 +17,14 @@ namespace SourceDesigner.SyntaxNodes
         public InterfaceSyntaxNode[] Interfaces { get; init; } = Array.Empty<InterfaceSyntaxNode>();
         public EnumSyntaxNode[] Enums { get; init; } = Array.Empty<EnumSyntaxNode>();
         
-        public override string ToCode(CodeStyle style)
-        {
-            // TODO: not quite correct line breaks
-            var usingDirectiveCode = GetUsingDirectivesAsCode(style);
-            var memberCode = GetUsingDirectivesAsCode(style);
-            return $"namespace {Name}{Environment.NewLine}{{{Environment.NewLine}{usingDirectiveCode.Indent(style)}" +
-                   (string.IsNullOrWhiteSpace(usingDirectiveCode) ? "" : $"{Environment.NewLine}{Environment.NewLine}") +
-                   usingDirectiveCode.Indent(style) + (string.IsNullOrWhiteSpace(memberCode) ? "" : $"{Environment.NewLine}") +
-                   "}";
-        }
+        public override string ToCode(CodeStyle style) => 
+            $"namespace {Name}{Environment.NewLine}{GetBodyCodeBlock(style).WrapInBracesAndIndent(style)}";
 
-        private string GetUsingDirectivesAsCode(CodeStyle style) => 
-            string.Join(Environment.NewLine, UsingDirectives.Select(usingDirective => usingDirective.ToCode(style)));
-
-        private string GetMembersAsCode(CodeStyle style)
+        private string GetBodyCodeBlock(CodeStyle style)
         {
             List<string> members = new();
+            if (UsingDirectives.Length > 0)
+                members.Add(GetUsingDirectivesCodeBlock(style));
             members.AddRange(Namespaces.Select(member => member.ToCode(style)));
             members.AddRange(Interfaces.Select(member => member.ToCode(style)));
             members.AddRange(Classes.Select(member => member.ToCode(style)));
@@ -42,5 +33,8 @@ namespace SourceDesigner.SyntaxNodes
             members.AddRange(Enums.Select(member => member.ToCode(style)));
             return string.Join($"{Environment.NewLine}{Environment.NewLine}", members);
         }
+        
+        private string GetUsingDirectivesCodeBlock(CodeStyle style) => 
+            string.Join(Environment.NewLine, UsingDirectives.Select(usingDirective => usingDirective.ToCode(style)));
     }
 }

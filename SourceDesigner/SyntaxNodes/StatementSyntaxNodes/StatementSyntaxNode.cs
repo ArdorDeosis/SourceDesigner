@@ -1,8 +1,7 @@
 ﻿namespace SourceDesigner.SyntaxNodes
 {
-    // TODO
-    // this is just a placeholder
     public abstract class StatementSyntaxNode : SyntaxNodeBase
     {
+        public static StatementSyntaxNode FromText(string statement) => new RawStatementSyntaxNode(statement);
     }
 }

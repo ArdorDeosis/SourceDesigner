@@ -22,9 +22,9 @@ namespace SourceDesigner.SyntaxNodes
 
         public override string ToCode(CodeStyle style) =>
             $"{AccessModifier.EnumToCode()} {Modifiers.FlagEnumToCode().WithTrailingSpace()}class {Name}{Environment.NewLine}" +
-            $"{{{string.Join($"{Environment.NewLine}{Environment.NewLine}", GetMembersAsCode(style)).Indent(style)}{Environment.NewLine}}}";
+            GetBodyCodeBlock(style).WrapInBracesAndIndent(style);
 
-        private IEnumerable<string> GetMembersAsCode(CodeStyle style)
+        private string GetBodyCodeBlock(CodeStyle style)
         {
             List<string> members = new();
             members.AddRange(Interfaces.Select(member => Environment.NewLine + member.ToCode(style)));
@@ -35,7 +35,7 @@ namespace SourceDesigner.SyntaxNodes
             members.AddRange(Fields.Select(member => Environment.NewLine + member.ToCode(style)));
             members.AddRange(Properties.Select(member => Environment.NewLine + member.ToCode(style)));
             members.AddRange(Methods.Select(member => Environment.NewLine + member.ToCode(style)));
-            return members;
+            return string.Join($"{Environment.NewLine}{Environment.NewLine}", members);
         }
     }
 }
