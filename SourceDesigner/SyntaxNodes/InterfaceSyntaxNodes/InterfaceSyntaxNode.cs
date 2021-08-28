@@ -27,13 +27,13 @@ namespace SourceDesigner.SyntaxNodes
         private string GetBodyCodeBlock(CodeStyle style)
         {
             List<string> members = new();
-            members.AddRange(Interfaces.Select(member => Environment.NewLine + member.ToCode(style)));
-            members.AddRange(Classes.Select(member => Environment.NewLine + member.ToCode(style)));
-            members.AddRange(Records.Select(member => Environment.NewLine + member.ToCode(style)));
-            members.AddRange(Structs.Select(member => Environment.NewLine + member.ToCode(style)));
-            members.AddRange(Enums.Select(member => Environment.NewLine + member.ToCode(style)));
-            members.AddRange(Properties.Select(member => Environment.NewLine + member.ToCode(style)));
-            members.AddRange(Methods.Select(member => Environment.NewLine + member.ToCode(style)));
+            members.AddRange(Interfaces.Select(member => member.ToCode(style)));
+            members.AddRange(Classes.Select(member => member.ToCode(style)));
+            members.AddRange(Records.Select(member => member.ToCode(style)));
+            members.AddRange(Structs.Select(member => member.ToCode(style)));
+            members.AddRange(Enums.Select(member => member.ToCode(style)));
+            members.AddRange(Properties.Select(member => member.ToCode(style)));
+            members.AddRange(Methods.Select(member => member.ToCode(style)));
             return string.Join($"{Environment.NewLine}{Environment.NewLine}", members);
         }
     }
