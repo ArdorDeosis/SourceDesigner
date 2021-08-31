@@ -6,13 +6,13 @@ namespace SourceDesigner.Utilities
     public static class EnumExtensions
     {
         // TODO: better exceptions
-        public static string EnumToCode(this Enum value)
+        internal static string EnumToCode(this Enum value)
         {
             return value.GetAttribute<CodeRepresentationAttribute>()?.Code ??
                    throw new Exception("No code representation defined!");
         }
 
-        public static string FlagEnumToCode<T>(this T value) where T : Enum
+        internal static string FlagEnumToCode<T>(this T value) where T : Enum
         {
             var singleValues = EnumUtilities.GetAll<T>()
                 .Where(modifier => !modifier.Equals((T)(object)0))
