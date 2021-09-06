@@ -1,24 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global")]
     public class ClassSyntaxNode : SyntaxNodeBase
     {
-        public string Name { get; init; }
+        public string? Name { get; init; }
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
         public ClassModifier Modifiers { get; set; } = ClassModifier.None;
 
-        public ClassSyntaxNode[] Classes { get; init; } = Array.Empty<ClassSyntaxNode>();
-        public StructSyntaxNode[] Structs { get; init; } = Array.Empty<StructSyntaxNode>();
-        public RecordSyntaxNode[] Records { get; init; } = Array.Empty<RecordSyntaxNode>();
-        public InterfaceSyntaxNode[] Interfaces { get; init; } = Array.Empty<InterfaceSyntaxNode>();
-        public EnumSyntaxNode[] Enums { get; init; } = Array.Empty<EnumSyntaxNode>();
-        public MethodSyntaxNode[] Methods { get; init; } = Array.Empty<MethodSyntaxNode>();
-        public FieldSyntaxNode[] Fields { get; init; } = Array.Empty<FieldSyntaxNode>();
-        public PropertySyntaxNode[] Properties { get; init; } = Array.Empty<PropertySyntaxNode>();
+        public List<ClassSyntaxNode> Classes { get; init; } = new();
+        public List<StructSyntaxNode> Structs { get; init; } = new();
+        public List<RecordSyntaxNode> Records { get; init; } = new();
+        public List<InterfaceSyntaxNode> Interfaces { get; init; } = new();
+        public List<EnumSyntaxNode> Enums { get; init; } = new();
+        public List<MethodSyntaxNode> Methods { get; init; } = new();
+        public List<FieldSyntaxNode> Fields { get; init; } = new();
+        public List<PropertySyntaxNode> Properties { get; init; } = new();
+        
+        public ClassSyntaxNode()
+        {
+        }
+        
+        public ClassSyntaxNode(string? name)
+        {
+            Name = name;
+        }
 
         public override string ToCode(CodeStyle style) =>
             $"{AccessModifier.EnumToCode()} {Modifiers.FlagEnumToCode().WithTrailingSpace()}class {Name}{Environment.NewLine}" +

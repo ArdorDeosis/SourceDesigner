@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SourceDesigner.SyntaxNodes;
 
 namespace TestApplication
@@ -8,12 +7,11 @@ namespace TestApplication
     {
         private static void Main()
         {
-            var file = new ClassSyntaxNode
+            var file = new ClassSyntaxNode ("EnumExtensions")
             {
                 AccessModifier = AccessModifier.Public,
                 Modifiers = ClassModifier.Static | ClassModifier.Partial,
-                Name = "EnumExtensions",
-                Methods = new[]
+                Methods = 
                 {
                     new MethodSyntaxNode
                     {
@@ -36,7 +34,7 @@ namespace TestApplication
                             {
                                 DefaultValue = ExpressionSyntaxNode.FromString("throw new Exception()"),
                                 SwitchValueName = "value",
-                                ValueExpressionPairs = new Dictionary<string, ExpressionSyntaxNode>
+                                ValueExpressionPairs =
                                 {
                                     { "1", "one" },
                                     { "2", "two" },
