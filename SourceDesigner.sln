@@ -6,10 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestAppl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceDesignerTests", "SourceDesignerTests\SourceDesignerTests.csproj", "{8DD9FBD9-8B6F-47AE-BB83-665DDF9A684A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastJsonConversion.Generator", "FastJsonConversion.Generator\FastJsonConversion.Generator.csproj", "{17AF273B-3CFC-4B2C-8A04-8636C2DD9E51}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastJsonConversion", "FastJsonConversion\FastJsonConversion.csproj", "{26263199-AD96-450E-BA42-1D9119CCC214}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,13 +24,5 @@ Global
 		{8DD9FBD9-8B6F-47AE-BB83-665DDF9A684A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DD9FBD9-8B6F-47AE-BB83-665DDF9A684A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DD9FBD9-8B6F-47AE-BB83-665DDF9A684A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17AF273B-3CFC-4B2C-8A04-8636C2DD9E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17AF273B-3CFC-4B2C-8A04-8636C2DD9E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17AF273B-3CFC-4B2C-8A04-8636C2DD9E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17AF273B-3CFC-4B2C-8A04-8636C2DD9E51}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26263199-AD96-450E-BA42-1D9119CCC214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26263199-AD96-450E-BA42-1D9119CCC214}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26263199-AD96-450E-BA42-1D9119CCC214}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26263199-AD96-450E-BA42-1D9119CCC214}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
