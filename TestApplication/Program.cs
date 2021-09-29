@@ -7,19 +7,17 @@ namespace TestApplication
     {
         private static void Main()
         {
-            var file = new ClassSyntaxNode ("EnumExtensions")
+            var myClass = new Class("EnumExtensions")
             {
                 AccessModifier = AccessModifier.Public,
                 Modifiers = ClassModifier.Static | ClassModifier.Partial,
-                Methods = 
+                Methods =
                 {
-                    new MethodSyntaxNode
+                    new Method("string", "MyMethod")
                     {
-                        Name = "MyMethod",
-                        ReturnType = "string",
                         AccessModifier = AccessModifier.Public,
                         Modifiers = MethodModifier.Static,
-                        Parameters = new MethodParameterSyntaxNode[]
+                        Parameters = new MethodParameter[]
                         {
                             new()
                             {
@@ -28,24 +26,21 @@ namespace TestApplication
                                 Modifier = MethodParameterModifier.This
                             }
                         },
-                        Body = new ExpressionBodySyntaxNode
+                        Body = new SwitchExpression
                         {
-                            Expression = new SwitchExpressionSyntaxNode
+                            DefaultValue = Expression.FromString("throw new Exception()"),
+                            SwitchValueName = "value",
+                            ValueExpressionPairs =
                             {
-                                DefaultValue = ExpressionSyntaxNode.FromString("throw new Exception()"),
-                                SwitchValueName = "value",
-                                ValueExpressionPairs =
-                                {
-                                    { "1", "one" },
-                                    { "2", "two" },
-                                    { "3", "three" },
-                                }
+                                {"1", "one"},
+                                {"2", "two"},
+                                {"3", "three"},
                             }
                         }
                     }
                 }
             };
-            Console.WriteLine(file.ToCode());
+            Console.WriteLine(myClass.ToCode());
         }
     }
 }

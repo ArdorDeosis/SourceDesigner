@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class SwitchExpressionSyntaxNode : ExpressionSyntaxNode
+    public class SwitchExpression : Expression
     {
         public string SwitchValueName { get; init; }
-        public Dictionary<string, ExpressionSyntaxNode> ValueExpressionPairs { get; init; } = new();
-        public ExpressionSyntaxNode? DefaultValue { get; init; }
+        public Dictionary<string, Expression> ValueExpressionPairs { get; init; } = new();
+        public Expression? DefaultValue { get; init; }
 
         public override string ToCode(CodeStyle style)
         {

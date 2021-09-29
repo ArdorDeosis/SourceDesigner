@@ -4,15 +4,21 @@ using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class MethodSyntaxNode : SyntaxNodeBase
+    public class Method : SyntaxNodeBase
     {
+        public Method(string returnType, string name)
+        {
+            ReturnType = returnType;
+            Name = name;
+        }
+        
         public string Name { get; init; }
         public string ReturnType { get; init; }
         public AccessModifier AccessModifier { get; init; } = AccessModifier.Internal;
         public MethodModifier Modifiers { get; init; } = MethodModifier.None;
-        public MethodParameterSyntaxNode[] Parameters { get; init; } = Array.Empty<MethodParameterSyntaxNode>();
+        public MethodParameter[] Parameters { get; init; } = Array.Empty<MethodParameter>();
         
-        public BodySyntaxNode? Body { get; init; }
+        public MethodBody? Body { get; init; }
 
         public override string ToCode(CodeStyle style) =>
             $"{GetMethodHeader(style)}{(Body != null ? $" {Body.ToCode(style)}" : ";")}";

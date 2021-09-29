@@ -7,15 +7,19 @@ namespace SourceDesigner.SyntaxNodes
 {
     public class NamespaceSyntaxNode : SyntaxNodeBase
     {
-        public string Name { get; init; }
+        public NamespaceSyntaxNode(string name)
+        {
+            Name = name;
+        }
+        public string Name { get; }
 
-        public UsingDirectiveSyntaxNode[] UsingDirectives { get; init; } = Array.Empty<UsingDirectiveSyntaxNode>();
-        public NamespaceSyntaxNode[] Namespaces { get; init; } = Array.Empty<NamespaceSyntaxNode>();
-        public ClassSyntaxNode[] Classes { get; init; } = Array.Empty<ClassSyntaxNode>();
-        public StructSyntaxNode[] Structs { get; init; } = Array.Empty<StructSyntaxNode>();
-        public RecordSyntaxNode[] Records { get; init; } = Array.Empty<RecordSyntaxNode>();
-        public InterfaceSyntaxNode[] Interfaces { get; init; } = Array.Empty<InterfaceSyntaxNode>();
-        public EnumSyntaxNode[] Enums { get; init; } = Array.Empty<EnumSyntaxNode>();
+        public List<UsingDirectiveSyntaxNode> UsingDirectives { get; } = new();
+        public List<NamespaceSyntaxNode> Namespaces { get; } = new();
+        public List<Class> Classes { get; } = new();
+        public List<StructSyntaxNode> Structs { get; } = new();
+        public List<RecordSyntaxNode> Records { get; } = new();
+        public List<InterfaceSyntaxNode> Interfaces { get; } = new();
+        public List<EnumSyntaxNode> Enums { get; } = new();
         
         public override string ToCode(CodeStyle style) => 
             $"namespace {Name}{Environment.NewLine}{GetBodyCodeBlock(style).WrapInBracesAndIndent(style)}";
@@ -23,7 +27,7 @@ namespace SourceDesigner.SyntaxNodes
         private string GetBodyCodeBlock(CodeStyle style)
         {
             List<string> members = new();
-            if (UsingDirectives.Length > 0)
+            if (UsingDirectives.Count > 0)
                 members.Add(GetUsingDirectivesCodeBlock(style));
             members.AddRange(Namespaces.Select(member => member.ToCode(style)));
             members.AddRange(Interfaces.Select(member => member.ToCode(style)));

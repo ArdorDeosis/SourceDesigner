@@ -2,7 +2,7 @@
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class MethodParameterSyntaxNode : SyntaxNodeBase
+    public class MethodParameter : SyntaxNodeBase
     {
         public string Type { get; init; }
         public string Name { get; init; }

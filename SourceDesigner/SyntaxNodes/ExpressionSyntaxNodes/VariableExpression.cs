@@ -1,6 +1,6 @@
 ﻿namespace SourceDesigner.SyntaxNodes
 {
-    public class VariableExpressionSyntaxNode : ExpressionSyntaxNode
+    public class VariableExpression : Expression
     {
         public string VariableName { get; init; }
         public override string ToCode(CodeStyle style) => VariableName;

@@ -8,26 +8,26 @@ namespace SourceDesigner.SyntaxNodes
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global")]
-    public class ClassSyntaxNode : SyntaxNodeBase
+    public class Class : SyntaxNodeBase
     {
         public string? Name { get; init; }
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
         public ClassModifier Modifiers { get; set; } = ClassModifier.None;
 
-        public List<ClassSyntaxNode> Classes { get; init; } = new();
+        public List<Class> Classes { get; init; } = new();
         public List<StructSyntaxNode> Structs { get; init; } = new();
         public List<RecordSyntaxNode> Records { get; init; } = new();
         public List<InterfaceSyntaxNode> Interfaces { get; init; } = new();
         public List<EnumSyntaxNode> Enums { get; init; } = new();
-        public List<MethodSyntaxNode> Methods { get; init; } = new();
+        public List<Method> Methods { get; init; } = new();
         public List<FieldSyntaxNode> Fields { get; init; } = new();
         public List<PropertySyntaxNode> Properties { get; init; } = new();
         
-        public ClassSyntaxNode()
+        public Class()
         {
         }
         
-        public ClassSyntaxNode(string? name)
+        public Class(string? name)
         {
             Name = name;
         }

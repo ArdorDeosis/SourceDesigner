@@ -1,16 +1,16 @@
 ﻿namespace SourceDesigner.SyntaxNodes
 {
-    public class VariableDeclarationStatementSyntaxNode : StatementSyntaxNode
+    public class VariableDeclarationStatement : Statement
     {
-        private VariableExpressionSyntaxNode variable;
+        private VariableExpression variable;
         private AssignmentSyntaxNode? assignment;
 
         public string VariableName
         {
-            init => variable = new VariableExpressionSyntaxNode() { VariableName = value };
+            init => variable = new VariableExpression() { VariableName = value };
         }
 
-        public ExpressionSyntaxNode? Value
+        public Expression? Value
         {
             init => assignment = value != null ? new AssignmentSyntaxNode { Expression = value } : null;
         }

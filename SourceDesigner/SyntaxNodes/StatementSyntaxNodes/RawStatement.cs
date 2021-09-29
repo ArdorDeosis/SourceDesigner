@@ -1,8 +1,8 @@
 ﻿namespace SourceDesigner.SyntaxNodes
 {
-    internal class RawStatementSyntaxNode : StatementSyntaxNode
+    internal class RawStatement : Statement
     {
-        internal RawStatementSyntaxNode(string statement)
+        internal RawStatement(string statement)
         {
             Statement = statement;
         }  

@@ -8,7 +8,7 @@ namespace SourceDesigner.SyntaxNodes
     {
         private readonly AssignmentSyntaxNode? assignment;
 
-        public ExpressionSyntaxNode? AssignmentValue
+        public Expression? AssignmentValue
         {
             get => assignment?.Expression;
             init => assignment = value != null ? new AssignmentSyntaxNode { Expression = value } : assignment = null;

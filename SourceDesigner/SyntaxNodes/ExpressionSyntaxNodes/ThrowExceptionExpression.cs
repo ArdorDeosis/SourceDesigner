@@ -2,16 +2,16 @@
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class ThrowExceptionExpression : ExpressionSyntaxNode
+    public class ThrowExceptionExpression : Expression
     {
         public string ExceptionType { get; init; } = "Exception";
 
         public string Message
         {
-            init => ExceptionConstructorParameters = new ExpressionSyntaxNode[] { value };
+            init => ExceptionConstructorParameters = new Expression[] { value };
         }
 
-        public ExpressionSyntaxNode[] ExceptionConstructorParameters { get; init; }
+        public Expression[] ExceptionConstructorParameters { get; init; }
         public override string ToCode(CodeStyle style) => $"throw new {ExceptionType}({GetParameterList(style)})";
 
         private string GetParameterList(CodeStyle style) => string.Join(", ", ExceptionConstructorParameters

@@ -11,7 +11,7 @@ namespace SourceDesigner.SyntaxNodes
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
         public FieldModifier Modifiers { get; set; } = FieldModifier.None;
         
-        public ExpressionSyntaxNode? AssignmentValue
+        public Expression? AssignmentValue
         {
             get => assignment?.Expression;
             init => assignment = value != null ? new AssignmentSyntaxNode { Expression = value } : assignment = null;
