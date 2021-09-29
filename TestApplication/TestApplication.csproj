@@ -7,8 +7,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\SourceDesigner\SourceDesigner.csproj" />
-        <ProjectReference Include="..\FastJsonConversion\FastJsonConversion.csproj" />
-        <ProjectReference Include="..\FastJsonConversion.Generator\FastJsonConversion.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
 </Project>
