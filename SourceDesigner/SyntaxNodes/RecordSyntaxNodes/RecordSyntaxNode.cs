@@ -11,14 +11,14 @@ namespace SourceDesigner.SyntaxNodes
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
         public RecordModifier Modifiers { get; set; } = RecordModifier.None;
 
-        public Class[] Classes { get; init; } = Array.Empty<Class>();
-        public StructSyntaxNode[] Structs { get; init; } = Array.Empty<StructSyntaxNode>();
+        public ClassSyntax[] Classes { get; init; } = Array.Empty<ClassSyntax>();
+        public Struct[] Structs { get; init; } = Array.Empty<Struct>();
         public RecordSyntaxNode[] Records { get; init; } = Array.Empty<RecordSyntaxNode>();
         public InterfaceSyntaxNode[] Interfaces { get; init; } = Array.Empty<InterfaceSyntaxNode>();
-        public EnumSyntaxNode[] Enums { get; init; } = Array.Empty<EnumSyntaxNode>();
+        public EnumSyntax[] Enums { get; init; } = Array.Empty<EnumSyntax>();
         public Method[] Methods { get; init; } = Array.Empty<Method>();
-        public FieldSyntaxNode[] Fields { get; init; } = Array.Empty<FieldSyntaxNode>();
-        public PropertySyntaxNode[] Properties { get; init; } = Array.Empty<PropertySyntaxNode>();
+        public FieldSyntax[] Fields { get; init; } = Array.Empty<FieldSyntax>();
+        public Property[] Properties { get; init; } = Array.Empty<Property>();
 
         public override string ToCode(CodeStyle style) =>
             $"{AccessModifier.EnumToCode()} {Modifiers.FlagEnumToCode().WithTrailingSpace()}record {Name}" +

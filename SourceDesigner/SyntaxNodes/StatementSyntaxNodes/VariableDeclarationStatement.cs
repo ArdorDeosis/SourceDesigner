@@ -2,17 +2,17 @@
 {
     public class VariableDeclarationStatement : Statement
     {
-        private VariableExpression variable;
-        private AssignmentSyntaxNode? assignment;
+        private VariableExpressionSyntax variable;
+        private Assignment? assignment;
 
         public string VariableName
         {
-            init => variable = new VariableExpression() { VariableName = value };
+            init => variable = new VariableExpressionSyntax() { VariableName = value };
         }
 
-        public Expression? Value
+        public ExpressionSyntax? Value
         {
-            init => assignment = value != null ? new AssignmentSyntaxNode { Expression = value } : null;
+            init => assignment = value != null ? new Assignment { ExpressionSyntax = value } : null;
         }
 
         public string Type { get; init; } = "var";

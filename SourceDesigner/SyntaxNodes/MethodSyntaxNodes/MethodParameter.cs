@@ -4,6 +4,12 @@ namespace SourceDesigner.SyntaxNodes
 {
     public class MethodParameter : SyntaxNodeBase
     {
+        public MethodParameter(string type, string name)
+        {
+            Type = type;
+            Name = name;
+        }
+
         public string Type { get; init; }
         public string Name { get; init; }
         public MethodParameterModifier Modifier { get; init; }

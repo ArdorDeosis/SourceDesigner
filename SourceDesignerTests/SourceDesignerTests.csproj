@@ -13,8 +13,4 @@
       <ProjectReference Include="..\SourceDesigner\SourceDesigner.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="SyntaxNodes" />
-    </ItemGroup>
-
 </Project>

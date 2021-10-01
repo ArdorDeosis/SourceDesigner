@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SourceDesigner.SyntaxNodes.FileRootSyntaxNodes;
 using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class NamespaceSyntaxNode : SyntaxNodeBase
+    public class Namespace : SyntaxNodeBase
     {
-        public NamespaceSyntaxNode(string name)
+        public Namespace(string name)
         {
             Name = name;
         }
         public string Name { get; }
 
         public List<UsingDirectiveSyntaxNode> UsingDirectives { get; } = new();
-        public List<NamespaceSyntaxNode> Namespaces { get; } = new();
-        public List<Class> Classes { get; } = new();
-        public List<StructSyntaxNode> Structs { get; } = new();
+        public List<Namespace> Namespaces { get; } = new();
+        public List<ClassSyntax> Classes { get; } = new();
+        public List<Struct> Structs { get; } = new();
         public List<RecordSyntaxNode> Records { get; } = new();
         public List<InterfaceSyntaxNode> Interfaces { get; } = new();
-        public List<EnumSyntaxNode> Enums { get; } = new();
+        public List<EnumSyntax> Enums { get; } = new();
         
         public override string ToCode(CodeStyle style) => 
             $"namespace {Name}{Environment.NewLine}{GetBodyCodeBlock(style).WrapInBracesAndIndent(style)}";
