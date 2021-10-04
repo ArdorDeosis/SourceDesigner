@@ -5,7 +5,7 @@ namespace SourceDesigner.SyntaxNodes
     public abstract class PropertyAccessorSyntaxNode : SyntaxNodeBase
     {
         public AccessModifier? AccessModifier { get; set; }
-        public MethodBody? Body { get; init; }
+        public MethodBodySyntax? Body { get; init; }
 
         protected abstract string Keyword { get; }
 

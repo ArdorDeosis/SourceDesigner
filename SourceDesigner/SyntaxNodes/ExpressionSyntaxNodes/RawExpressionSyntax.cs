@@ -1,8 +1,8 @@
 ﻿namespace SourceDesigner.SyntaxNodes
 {
-    internal class RawExpression : Expression
+    internal class RawExpressionSyntax : ExpressionSyntax
     {
-        internal RawExpression(string expression)
+        internal RawExpressionSyntax(string expression)
         {
             Expression = expression;
         }  

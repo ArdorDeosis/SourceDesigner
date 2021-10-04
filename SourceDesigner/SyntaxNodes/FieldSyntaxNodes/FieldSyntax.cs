@@ -2,19 +2,25 @@
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class FieldSyntaxNode : SyntaxNodeBase
+    public class FieldSyntax : SyntaxNodeBase
     {
-        private readonly AssignmentSyntaxNode? assignment;
-        
-        public string Name { get; init; }
-        public string Type { get; init; }
+        private readonly AssignmentSyntax? assignment;
+
+        public FieldSyntax(string type, string name)
+        {
+            Name = name;
+            Type = type;
+        }
+
+        public string Name { get; }
+        public string Type { get; }
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
         public FieldModifier Modifiers { get; set; } = FieldModifier.None;
         
-        public Expression? AssignmentValue
+        public ExpressionSyntax? AssignmentValue
         {
-            get => assignment?.Expression;
-            init => assignment = value != null ? new AssignmentSyntaxNode { Expression = value } : assignment = null;
+            get => assignment?.ExpressionSyntax;
+            init => assignment = value != null ? new AssignmentSyntax { ExpressionSyntax = value } : assignment = null;
         }
 
         public override string ToCode(CodeStyle style) =>

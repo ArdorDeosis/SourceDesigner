@@ -8,26 +8,26 @@ namespace SourceDesigner.SyntaxNodes
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global")]
-    public class Class : SyntaxNodeBase
+    public class ClassSyntax : SyntaxNodeBase
     {
-        public string? Name { get; init; }
+        public string? Name { get; }
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
         public ClassModifier Modifiers { get; set; } = ClassModifier.None;
 
-        public List<Class> Classes { get; init; } = new();
-        public List<StructSyntaxNode> Structs { get; init; } = new();
-        public List<RecordSyntaxNode> Records { get; init; } = new();
-        public List<InterfaceSyntaxNode> Interfaces { get; init; } = new();
-        public List<EnumSyntaxNode> Enums { get; init; } = new();
+        public List<ClassSyntax> Classes { get; init; } = new();
+        public List<StructSyntax> Structs { get; init; } = new();
+        public List<RecordSyntax> Records { get; init; } = new();
+        public List<InterfaceSyntax> Interfaces { get; init; } = new();
+        public List<EnumSyntax> Enums { get; init; } = new();
         public List<Method> Methods { get; init; } = new();
-        public List<FieldSyntaxNode> Fields { get; init; } = new();
-        public List<PropertySyntaxNode> Properties { get; init; } = new();
+        public List<FieldSyntax> Fields { get; init; } = new();
+        public List<Property> Properties { get; init; } = new();
         
-        public Class()
+        public ClassSyntax()
         {
         }
         
-        public Class(string? name)
+        public ClassSyntax(string? name)
         {
             Name = name;
         }

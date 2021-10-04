@@ -6,12 +6,12 @@ namespace SourceDesigner.SyntaxNodes
 {
     public class PropertyWithAccessors : Property
     {
-        private readonly Assignment? assignment;
+        private readonly AssignmentSyntax? assignment;
 
         public ExpressionSyntax? AssignmentValue
         {
             get => assignment?.ExpressionSyntax;
-            init => assignment = value != null ? new Assignment { ExpressionSyntax = value } : assignment = null;
+            init => assignment = value != null ? new AssignmentSyntax { ExpressionSyntax = value } : assignment = null;
         }
 
         public PropertyGetAccessorSyntaxNode? Getter { get; init; }

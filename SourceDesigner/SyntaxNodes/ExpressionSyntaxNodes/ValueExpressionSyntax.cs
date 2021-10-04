@@ -1,8 +1,8 @@
 ﻿namespace SourceDesigner.SyntaxNodes
 {
-    public abstract class ValueExpression<T> : Expression
+    public abstract class ValueExpressionSyntax<T> : ExpressionSyntax
     {
-        protected ValueExpression(T value)
+        protected ValueExpressionSyntax(T value)
         {
             Value = value;
         }

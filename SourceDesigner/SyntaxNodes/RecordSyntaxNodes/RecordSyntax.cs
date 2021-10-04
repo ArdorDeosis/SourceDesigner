@@ -5,20 +5,25 @@ using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class RecordSyntaxNode : SyntaxNodeBase
+    public class RecordSyntax : SyntaxNodeBase
     {
-        public string Name { get; init; }
+        public RecordSyntax(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
         public RecordModifier Modifiers { get; set; } = RecordModifier.None;
 
-        public ClassSyntax[] Classes { get; init; } = Array.Empty<ClassSyntax>();
-        public Struct[] Structs { get; init; } = Array.Empty<Struct>();
-        public RecordSyntaxNode[] Records { get; init; } = Array.Empty<RecordSyntaxNode>();
-        public InterfaceSyntaxNode[] Interfaces { get; init; } = Array.Empty<InterfaceSyntaxNode>();
-        public EnumSyntax[] Enums { get; init; } = Array.Empty<EnumSyntax>();
-        public Method[] Methods { get; init; } = Array.Empty<Method>();
-        public FieldSyntax[] Fields { get; init; } = Array.Empty<FieldSyntax>();
-        public Property[] Properties { get; init; } = Array.Empty<Property>();
+        public List<ClassSyntax> Classes { get; init; } = new();
+        public List<StructSyntax> Structs { get; init; } = new();
+        public List<RecordSyntax> Records { get; init; } = new();
+        public List<InterfaceSyntax> Interfaces { get; init; } = new();
+        public List<EnumSyntax> Enums { get; init; } = new();
+        public List<Method> Methods { get; init; } = new();
+        public List<FieldSyntax> Fields { get; init; } = new();
+        public List<Property> Properties { get; init; } = new();
 
         public override string ToCode(CodeStyle style) =>
             $"{AccessModifier.EnumToCode()} {Modifiers.FlagEnumToCode().WithTrailingSpace()}record {Name}" +

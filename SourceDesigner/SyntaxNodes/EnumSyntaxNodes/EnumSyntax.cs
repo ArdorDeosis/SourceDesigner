@@ -1,15 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class EnumSyntaxNode : SyntaxNodeBase
+    public class EnumSyntax : SyntaxNodeBase
     {
         // TODO: base type?
-        public string Name { get; init; }
+        public EnumSyntax(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
         public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
-        public EnumMemberSyntaxNode[] Members { get; init; }
+        public List<EnumMemberSyntax> Members { get; init; } = new();
         public override string ToCode(CodeStyle style) =>
             $"{AccessModifier.EnumToCode()} enum {Name}{Environment.NewLine}" +
             GetBodyCodeBlock(style).WrapInBracesAndIndent(style);

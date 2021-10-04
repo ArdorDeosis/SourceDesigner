@@ -2,15 +2,15 @@
 {
     class ExpressionBodiedProperty : Property
     {
-        private readonly ExpressionBody body;
+        private readonly ExpressionBodySyntax bodySyntax;
 
         public ExpressionSyntax ExpressionSyntax
         {
-            get => body.ExpressionSyntax;
-            init => body = new ExpressionBody { ExpressionSyntax = value };
+            get => bodySyntax.ExpressionSyntax;
+            init => bodySyntax = new ExpressionBodySyntax { ExpressionSyntax = value };
         }
 
-        public override string ToCode(CodeStyle style) => $"{GetPropertyHeader()} {body.ToCode(style)};";
+        public override string ToCode(CodeStyle style) => $"{GetPropertyHeader()} {bodySyntax.ToCode(style)};";
 
         public ExpressionBodiedProperty(string type, string name) : base(type, name)
         {

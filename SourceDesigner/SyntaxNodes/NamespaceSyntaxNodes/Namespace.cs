@@ -14,13 +14,13 @@ namespace SourceDesigner.SyntaxNodes
         }
         public string Name { get; }
 
-        public List<UsingDirectiveSyntaxNode> UsingDirectives { get; } = new();
-        public List<Namespace> Namespaces { get; } = new();
-        public List<ClassSyntax> Classes { get; } = new();
-        public List<Struct> Structs { get; } = new();
-        public List<RecordSyntaxNode> Records { get; } = new();
-        public List<InterfaceSyntaxNode> Interfaces { get; } = new();
-        public List<EnumSyntax> Enums { get; } = new();
+        public List<UsingDirectiveSyntaxNode> UsingDirectives { get; init; } = new();
+        public List<Namespace> Namespaces { get; init; } = new();
+        public List<ClassSyntax> Classes { get; init; } = new();
+        public List<StructSyntax> Structs { get; init; } = new();
+        public List<RecordSyntax> Records { get; init; } = new();
+        public List<InterfaceSyntax> Interfaces { get; init; } = new();
+        public List<EnumSyntax> Enums { get; init; } = new();
         
         public override string ToCode(CodeStyle style) => 
             $"namespace {Name}{Environment.NewLine}{GetBodyCodeBlock(style).WrapInBracesAndIndent(style)}";

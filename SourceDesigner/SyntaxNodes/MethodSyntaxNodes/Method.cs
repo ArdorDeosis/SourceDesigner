@@ -18,7 +18,7 @@ namespace SourceDesigner.SyntaxNodes
         public MethodModifier Modifiers { get; init; } = MethodModifier.None;
         public MethodParameter[] Parameters { get; init; } = Array.Empty<MethodParameter>();
         
-        public MethodBody? Body { get; init; }
+        public MethodBodySyntax? Body { get; init; }
 
         public override string ToCode(CodeStyle style) =>
             $"{GetMethodHeader(style)}{(Body != null ? $" {Body.ToCode(style)}" : ";")}";

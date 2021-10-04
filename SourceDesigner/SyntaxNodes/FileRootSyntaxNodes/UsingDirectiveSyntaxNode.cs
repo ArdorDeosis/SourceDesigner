@@ -1,4 +1,4 @@
-﻿namespace SourceDesigner.SyntaxNodes
+﻿namespace SourceDesigner.SyntaxNodes.FileRootSyntaxNodes
 {
     public class UsingDirectiveSyntaxNode : SyntaxNodeBase
     {
