@@ -1,6 +1,6 @@
 ﻿namespace SourceDesigner.SyntaxNodes
 {
-    class ExpressionBodiedProperty : Property
+    class ExpressionBodiedPropertySyntax : PropertySyntax
     {
         private readonly ExpressionBodySyntax bodySyntax;
 
@@ -12,7 +12,7 @@
 
         public override string ToCode(CodeStyle style) => $"{GetPropertyHeader()} {bodySyntax.ToCode(style)};";
 
-        public ExpressionBodiedProperty(string type, string name) : base(type, name)
+        public ExpressionBodiedPropertySyntax(string type, string name) : base(type, name)
         {
         }
     }

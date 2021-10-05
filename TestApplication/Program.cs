@@ -20,10 +20,10 @@ namespace TestApplication
             var myClass = new ClassSyntax("EnumExtensions")
             {
                 AccessModifier = AccessModifier.Public,
-                Modifiers = ClassModifier.Static | ClassModifier.Partial,
+                Modifiers = TypeModifier.Static | TypeModifier.Partial,
                 Methods =
                 {
-                    new Method("string", "ToStringRepresentation")
+                    new MethodSyntax("string", "ToStringRepresentation")
                     {
                         AccessModifier = AccessModifier.Public,
                         Modifiers = MethodModifier.Static,

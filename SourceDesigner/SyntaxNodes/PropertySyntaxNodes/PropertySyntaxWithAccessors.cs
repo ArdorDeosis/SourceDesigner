@@ -4,7 +4,7 @@ using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class PropertyWithAccessors : Property
+    public class PropertySyntaxWithAccessors : PropertySyntax
     {
         private readonly AssignmentSyntax? assignment;
 
@@ -30,7 +30,7 @@ namespace SourceDesigner.SyntaxNodes
             return string.Join(Environment.NewLine, accessorBodies);
         }
 
-        public PropertyWithAccessors(string type, string name) : base(type, name)
+        public PropertySyntaxWithAccessors(string type, string name) : base(type, name)
         {
         }
     }

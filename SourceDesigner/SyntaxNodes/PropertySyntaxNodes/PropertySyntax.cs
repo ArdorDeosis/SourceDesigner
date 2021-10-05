@@ -2,9 +2,9 @@
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public abstract class Property : SyntaxNodeBase
+    public abstract class PropertySyntax : SyntaxNodeBase
     {
-        protected Property(string type, string name)
+        protected PropertySyntax(string type, string name)
         {
             Name = name;
             Type = type;

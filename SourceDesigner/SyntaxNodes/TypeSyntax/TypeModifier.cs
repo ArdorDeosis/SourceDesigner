@@ -1,10 +1,9 @@
 ﻿using System;
-using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
     [Flags]
-    public enum ClassModifier
+    public enum TypeModifier
     {
         None = 0,
         
@@ -20,7 +19,10 @@ namespace SourceDesigner.SyntaxNodes
         [CodeRepresentation("sealed")]
         Sealed = 1 << 3,
         
+        [CodeRepresentation("readonly")]
+        Readonly = 1 << 4,
+        
         [CodeRepresentation("partial")]
-        Partial = 1 << 4,
+        Partial = 1 << 5,
     }
 }

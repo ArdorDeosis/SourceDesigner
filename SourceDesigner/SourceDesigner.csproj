@@ -3,6 +3,14 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Title>Source Designer</Title>
+        <Authors>Theobald Beyer</Authors>
+        <Description>Generate C# source code with ease. No manual string creations or worrying about formatting.</Description>
+        <RepositoryUrl>https://github.com/ArdorDeosis/SourceDesigner</RepositoryUrl>
+        <PackageReleaseNotes>Just testing NuGet packaging.</PackageReleaseNotes>
+        <AssemblyVersion>0.0.1</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>

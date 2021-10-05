@@ -5,19 +5,18 @@ using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class EnumSyntax : SyntaxNodeBase
+    public class EnumSyntax : MemberSyntax
     {
-        // TODO: base type?
-        public EnumSyntax(string name)
+        public EnumSyntax(string name) : base(name)
         {
-            Name = name;
         }
 
-        public string Name { get; }
-        public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
+        public UnderlyingEnumType UnderlyingType { get; init; } = UnderlyingEnumType.Int;
+
         public List<EnumMemberSyntax> Members { get; init; } = new();
+
         public override string ToCode(CodeStyle style) =>
-            $"{AccessModifier.EnumToCode()} enum {Name}{Environment.NewLine}" +
+            $"{AccessModifier.EnumToCode()} enum {Name} : {UnderlyingType.EnumToCode()}{Environment.NewLine}" +
             GetBodyCodeBlock(style).WrapInBracesAndIndent(style);
 
         private string GetBodyCodeBlock(CodeStyle style) =>

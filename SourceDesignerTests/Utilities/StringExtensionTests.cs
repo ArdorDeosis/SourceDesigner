@@ -94,6 +94,32 @@ namespace SourceDesignerTests.Utilities
                 $"{CodeStyle.Default.Indentation}b{Environment.NewLine}}}"
             },
         };
+        
+        [TestCase("\n")]
+        [TestCase("a\n")]
+        [TestCase("\na")]
+        [TestCase("a\na")]
+        [TestCase("\n\n")]
+        [TestCase("a\n\n")]
+        [TestCase("\n\na")]
+        [TestCase("a\n\na")]
+        [TestCase("\r\n")]
+        [TestCase("a\r\n")]
+        [TestCase("\r\na")]
+        [TestCase("a\r\na")]
+        [TestCase("\r\n\r\n")]
+        [TestCase("a\r\n\r\n")]
+        [TestCase("\r\n\r\na")]
+        [TestCase("a\r\n\r\na")]
+        public void IsMultiLine_True(string input) => Assert.That(input.IsMultiLine(), Is.True);
+
+        [TestCase("")]
+        [TestCase("a")]
+        [TestCase("\r")]
+        [TestCase("a\r")]
+        [TestCase("\ra")]
+        [TestCase("a\ra")]
+        public void IsMultiLine_False(string input) => Assert.That(input.IsMultiLine(), Is.False);
 
         [TestCaseSource(nameof(removeTrailingWhitespaceExpectedOutcomes))]
         public void RemoveTrailingWhitespace_ExpectedOutcome(string input, string expectedOutcome)

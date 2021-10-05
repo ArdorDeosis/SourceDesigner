@@ -5,6 +5,8 @@ namespace SourceDesigner.Utilities
 {
     public static class StringExtensions
     {
+        public static bool IsMultiLine(this string input) => input.Contains('\n');
+
         public static string Indent(this string input, CodeStyle style)
         {
             if (input == null)

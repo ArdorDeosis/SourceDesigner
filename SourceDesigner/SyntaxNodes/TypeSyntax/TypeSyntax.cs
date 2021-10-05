@@ -5,28 +5,35 @@ using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class RecordSyntax : SyntaxNodeBase
+    public abstract class TypeSyntax : MemberSyntax
     {
-        public RecordSyntax(string name)
+        public TypeSyntax(string name) : base(name) { }
+
+        public TypeModifier Modifiers { get; set; } = TypeModifier.None;
+
+        public string BaseType
         {
-            Name = name;
+            init => BaseTypes = new List<string> {value};
         }
 
-        public string Name { get; }
-        public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
-        public RecordModifier Modifiers { get; set; } = RecordModifier.None;
-
+        public List<string> BaseTypes { get; set; } = new();
+        
+        public List<GenericTypeParameter> GenericTypeParameters { get; init; } = new();
+        
         public List<ClassSyntax> Classes { get; init; } = new();
         public List<StructSyntax> Structs { get; init; } = new();
         public List<RecordSyntax> Records { get; init; } = new();
         public List<InterfaceSyntax> Interfaces { get; init; } = new();
         public List<EnumSyntax> Enums { get; init; } = new();
-        public List<Method> Methods { get; init; } = new();
+        public List<MethodSyntax> Methods { get; init; } = new();
         public List<FieldSyntax> Fields { get; init; } = new();
-        public List<Property> Properties { get; init; } = new();
+        public List<PropertySyntax> Properties { get; init; } = new();
+        
+        protected abstract string Keyword { get; }
 
         public override string ToCode(CodeStyle style) =>
-            $"{AccessModifier.EnumToCode()} {Modifiers.FlagEnumToCode().WithTrailingSpace()}record {Name}" +
+            $"{AccessModifier.EnumToCode()} {Modifiers.FlagEnumToCode().WithTrailingSpace()}{Keyword} {Name}" +
+            $"{GetBaseTypesAndGenericConstraints(style)}" +
             $"{Environment.NewLine}{GetBodyCodeBlock(style).WrapInBracesAndIndent(style)}";
 
         private string GetBodyCodeBlock(CodeStyle style)
@@ -41,6 +48,14 @@ namespace SourceDesigner.SyntaxNodes
             members.AddRange(Properties.Select(member => member.ToCode(style)));
             members.AddRange(Methods.Select(member => member.ToCode(style)));
             return string.Join($"{Environment.NewLine}{Environment.NewLine}", members);
+        }
+
+        private string GetBaseTypesAndGenericConstraints(CodeStyle style)
+        {
+            var output = string.Join(" ", 
+                string.Join(", ", BaseTypes), 
+                GenericTypeParameters.ToGenericTypeConstraintCode(style));
+            return output.Length > 0 ? " : " + output : "";
         }
     }
 }
