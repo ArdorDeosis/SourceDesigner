@@ -9,8 +9,6 @@ namespace SourceDesigner.SyntaxNodes
     {
         public TypeSyntax(string name) : base(name) { }
 
-        public TypeModifier Modifiers { get; set; } = TypeModifier.None;
-
         public string BaseType
         {
             init => BaseTypes = new List<string> {value};
@@ -20,14 +18,7 @@ namespace SourceDesigner.SyntaxNodes
         
         public List<GenericTypeParameter> GenericTypeParameters { get; init; } = new();
         
-        public List<ClassSyntax> Classes { get; init; } = new();
-        public List<StructSyntax> Structs { get; init; } = new();
-        public List<RecordSyntax> Records { get; init; } = new();
-        public List<InterfaceSyntax> Interfaces { get; init; } = new();
-        public List<EnumSyntax> Enums { get; init; } = new();
-        public List<MethodSyntax> Methods { get; init; } = new();
-        public List<FieldSyntax> Fields { get; init; } = new();
-        public List<PropertySyntax> Properties { get; init; } = new();
+        public List<MemberSyntax> Members { get; init; } = new();
         
         protected abstract string Keyword { get; }
 
@@ -38,16 +29,45 @@ namespace SourceDesigner.SyntaxNodes
 
         private string GetBodyCodeBlock(CodeStyle style)
         {
-            List<string> members = new();
-            members.AddRange(Interfaces.Select(member => member.ToCode(style)));
-            members.AddRange(Classes.Select(member => member.ToCode(style)));
-            members.AddRange(Records.Select(member => member.ToCode(style)));
-            members.AddRange(Structs.Select(member => member.ToCode(style)));
-            members.AddRange(Enums.Select(member => member.ToCode(style)));
-            members.AddRange(Fields.Select(member => member.ToCode(style)));
-            members.AddRange(Properties.Select(member => member.ToCode(style)));
-            members.AddRange(Methods.Select(member => member.ToCode(style)));
-            return string.Join($"{Environment.NewLine}{Environment.NewLine}", members);
+            return string.Join($"{Environment.NewLine}{Environment.NewLine}", Members
+                .OrderBy(Type).ThenBy(Modifier).ThenBy(Access));
+
+            // TODO: pull comparer into code style
+            int Type(MemberSyntax member) => member switch
+            {
+                InterfaceSyntax => 0,
+                EnumSyntax => 1,
+                ClassSyntax => 2,
+                RecordSyntax => 3,
+                StructSyntax => 4,
+                PropertySyntax => 5,
+                FieldSyntax => 6,
+                MethodSyntax => 7,
+                _ => 8
+            };
+            int Modifier(MemberSyntax member) => member.Modifiers switch
+            {
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Const) => 0,
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Static) => 1,
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Readonly) => 2,
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Abstract) => 3,
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Virtual) => 4,
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Partial) => 5,
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Override) => 6,
+                SyntaxNodes.Modifier.None  => 7,
+                _ when member.Modifiers.HasFlag(SyntaxNodes.Modifier.Sealed) => 8,
+                _ => 9
+            };
+            int Access(MemberSyntax member) => member.AccessModifier switch
+            {
+                AccessModifier.Public => 0,
+                AccessModifier.Internal => 1,
+                AccessModifier.Protected => 2,
+                AccessModifier.ProtectedInternal => 3,
+                AccessModifier.PrivateProtected => 4,
+                AccessModifier.Private => 5,
+                _ => 6
+            };
         }
 
         private string GetBaseTypesAndGenericConstraints(CodeStyle style)

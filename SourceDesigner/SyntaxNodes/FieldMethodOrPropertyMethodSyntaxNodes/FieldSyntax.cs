@@ -2,20 +2,11 @@
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public class FieldSyntax : SyntaxNodeBase
+    public class FieldSyntax : FieldMethodOrPropertySyntax
     {
         private readonly AssignmentSyntax? assignment;
 
-        public FieldSyntax(string type, string name)
-        {
-            Name = name;
-            Type = type;
-        }
-
-        public string Name { get; }
-        public string Type { get; }
-        public AccessModifier AccessModifier { get; set; } = AccessModifier.Internal;
-        public FieldModifier Modifiers { get; set; } = FieldModifier.None;
+        public FieldSyntax(string type, string name) : base(type, name) { }
         
         public ExpressionSyntax? AssignmentValue
         {
