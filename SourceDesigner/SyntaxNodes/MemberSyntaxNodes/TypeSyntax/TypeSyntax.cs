@@ -5,7 +5,7 @@ using SourceDesigner.Utilities;
 
 namespace SourceDesigner.SyntaxNodes
 {
-    public abstract class TypeSyntax : MemberSyntax
+    public abstract class TypeSyntax : EnumOrTypeSyntax
     {
         public TypeSyntax(string name) : base(name) { }
 
